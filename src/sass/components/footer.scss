@@ -1,0 +1,38 @@
+footer {
+	background-color: $c-shade-1;
+	width: 100%;
+	margin: 0;
+
+	clear: both;
+	position: relative;
+	bottom: 0;
+
+	display: grid;
+	.flex {
+		padding: 0.5rem;
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: space-between;
+		align-items: center;
+		div {
+			margin: 0.2rem;
+		}
+	}
+	ul {
+		list-style: none;
+		li {
+			margin: 5px;
+			span {
+				transition: all 0.5s ease-in-out;
+				color: $c-content;
+				font-weight: bolder;
+			}
+		}
+		li:hover {
+			span {
+				letter-spacing: 2px;
+				color: $c-accent;
+			}
+		}
+	}
+}

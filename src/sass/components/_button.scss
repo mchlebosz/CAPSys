@@ -1,0 +1,76 @@
+.wrapper {
+	width: 100%;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	filter: url("#goo");
+}
+
+.button {
+	border: 0px solid $c-background !important;
+	outline: none;
+	display: inline-block;
+	text-align: center;
+	background: $c-background;
+	color: $c-content;
+	font-weight: bold;
+	padding: 1.18em 1.32em 1.03em;
+	line-height: 1;
+	border-radius: 1em;
+	position: relative;
+	width: 100%;
+	text-decoration: none;
+	font-size: 1rem;
+	&:focus {
+		color: $c-accent;
+		.button:before,
+		.button:after {
+			width: 4.4em;
+			height: 2.95em;
+			position: absolute;
+			content: "";
+			display: inline-block;
+			background-color: $c-accent;
+			border-radius: 50%;
+			transition: transform 1s ease;
+			transform: scale(0);
+			z-index: -1;
+		}
+	}
+	&:active {
+		border: 0px solid $c-background;
+		outline: none;
+	}
+	&:hover {
+		cursor: pointer;
+		outline: none;
+	}
+}
+
+.button:before,
+.button:after {
+	width: 4.4em;
+	height: 2.95em;
+	position: absolute;
+	content: "";
+	display: inline-block;
+	background: $c-background;
+	border-radius: 50%;
+	transition: transform 1s ease;
+	transform: scale(0);
+	z-index: -1;
+}
+
+.button:before {
+	top: -25%;
+	left: 20%;
+}
+
+.button:after {
+	bottom: -25%;
+	right: 20%;
+}
+
+.button:hover:before,
+.button:hover:after {
+	transform: none;
+}

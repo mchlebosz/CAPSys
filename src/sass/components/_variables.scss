@@ -1,0 +1,106 @@
+// Fonts
+
+$font-std: "Montserrat", sans-serif;
+$font-main: "Lato", sans-serif;
+$font-head: "PT Serif", serif;
+$font-button: "Eczar", serif;
+
+// Colors
+
+$c-black: #000;
+$c-white: #fff;
+
+$c-background: #fbf9fa;
+$c-shade-1: #a4b0a8;
+$c-shade-2: #7f7d9e;
+$c-accent: #e94233;
+$c-accent-2: #9a2b26;
+$c-content: #132a47;
+
+$c-transparent: #00000000;
+
+// Breakpoint variables
+
+$lg: 1200px;
+$md: 992px;
+$sm: 768px;
+$xs: 576px;
+
+// Font sizes
+
+$html-font-size: (
+	null: 16px,
+	$md: 15px,
+	$sm: 14px,
+	$xs: 13px,
+);
+$title-font-size: (
+	null: 160px,
+	$md: 140px,
+	$sm: 120px,
+	$xs: 100px,
+);
+$h1-font-size: (
+	null: 38px,
+	$md: 32px,
+	$sm: 28px,
+	$xs: 26px,
+);
+$h2-font-size: (
+	null: 32px,
+	$md: 24px,
+	$sm: 16px,
+	$xs: 11px,
+);
+$h3-font-size: (
+	null: 24px,
+	$md: 18px,
+	$sm: 12px,
+	$xs: 8px,
+);
+$h4-font-size: (
+	null: 18px,
+	$md: 16px,
+	$sm: 10px,
+	$xs: 8px,
+);
+$small-font-size: (
+	null: 10px,
+	$md: 8px,
+	$sm: 8px,
+	$xs: 8px,
+);
+$slider-h1-font-size: (
+	null: 42px,
+	$md: 28px,
+	$sm: 48px,
+	$xs: 32px,
+);
+$slider-h3-font-size: (
+	null: 14px,
+	$md: 12px,
+	$sm: 16px,
+	$xs: 14px,
+);
+$button-font-size: (
+	null: 13px,
+	$md: 12px,
+	$sm: 18px,
+	$xs: 16px,
+);
+$paragraph-font-size: (
+	null: 18px,
+	$lg: 17px,
+	$md: 16px,
+	$sm: 15px,
+	$xs: 14px,
+);
+
+// Paddings
+
+$title-pd: (
+	null: 30px,
+	$md: 15px,
+	$sm: 10px,
+	$xs: 10px,
+);
