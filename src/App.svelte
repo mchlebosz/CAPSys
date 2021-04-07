@@ -11,22 +11,16 @@
 	import Footer from "./Layout/Footer.svelte";
 
 	export let url = "";
-	$: loggedIn.set(sessionStorage.getItem("loggedIn"));
-	$: if (sessionStorage.getItem("loggedIn") === null) {
-		sessionStorage.setItem("loggedIn", false);
-		loggedIn.set(false);
-	}
 
 	$: {
-		sessionStorage.setItem("loggedIn", $loggedIn);
-		console.log($loggedIn + " Session: " + sessionStorage.getItem("loggedIn"));
+		console.log("Global: " + $loggedIn + " Session: " + sessionStorage.getItem("loggedIn"));
 	}
 </script>
 
 <Header />
 <button
 	on:click={() => {
-		if ($loggedIn == true) loggedIn.set(false);
+		if ($loggedIn) loggedIn.set(false);
 		else loggedIn.set(true);
 	}}>{$loggedIn}</button
 >
@@ -44,8 +38,4 @@
 <Footer />
 
 <style>
-	.main {
-		height: 100%;
-		min-height: calc(100% - 70px);
-	}
 </style>

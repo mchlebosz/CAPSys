@@ -1,14 +1,19 @@
 <script>
 	import Icon from "svelte-awesome";
 	import { faUser } from "@fortawesome/free-regular-svg-icons";
+	import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
 	import { Router, Link, Route } from "svelte-routing";
+
+	import { loggedIn } from "../stores.js";
 
 	let items = [
 		{ name: "Homepage", url: "/" },
 		{ name: "About Us", url: "about" },
 		{ name: "Universities", url: "schools" },
 	];
+
+	import { fade } from "svelte/transition";
 
 	export let url = "";
 
@@ -27,10 +32,14 @@
 	{#if mainWidth >= 768}
 		<div class="desktop">
 			<nav class="menu" id="menu">
-				<div class="menu__logo">
-					<img src={logoPath} alt="Logo" />
-					<p><span>|</span>CAP</p>
-				</div>
+				<Router {url}
+					><Link to="/">
+						<div class="menu__logo">
+							<img src={logoPath} alt="Logo" />
+							<p><span>|</span>CAP</p>
+						</div>
+					</Link>
+				</Router>
 				<Router {url}>
 					<ul class="menu__container">
 						{#each items as item}
@@ -46,10 +55,20 @@
 								type="button"
 								id="loginButton"
 								on:click={(e) => {
-									document.querySelector("#hamburgerButton").classList.remove("is-active");
-									document.querySelector("nav.hamburger-menu").classList.add("closed");
-								}}><Icon data={faUser} scale={2} /></button
-							></Link
+									//document.querySelector("#hamburgerButton").classList.remove("is-active");
+									//document.querySelector("nav.hamburger-menu").classList.add("closed");
+								}}
+							>
+								{#if $loggedIn}
+									<span in:fade>
+										<Icon data={faUser} scale={2} />
+									</span>
+								{:else}
+									<span in:fade>
+										<Icon data={faSignInAlt} scale={2} />
+									</span>
+								{/if}
+							</button></Link
 						>
 					</Router>
 				</div>
@@ -103,16 +122,29 @@
 								document.querySelector("#hamburgerButton").classList.remove("is-active");
 								document.querySelector("nav.hamburger-menu").classList.add("closed");
 								console.log("hii");
-							}}><Icon data={faUser} scale={2} /></button
+							}}
+							>{#if $loggedIn}
+								<span in:fade>
+									<Icon data={faUser} scale={2} />
+								</span>
+							{:else}
+								<span in:fade>
+									<Icon data={faSignInAlt} scale={2} />
+								</span>
+							{/if}</button
 						></Link
 					>
 				</Router>
 			</nav>
 			<div class="top_bar">
-				<div class="top_bar__logo">
-					<img src={logoPath} alt="Logo" />
-					<p><span>|</span>CAP</p>
-				</div>
+				<Router {url}>
+					<Link to="/">
+						<div class="top_bar__logo">
+							<img src={logoPath} alt="Logo" />
+							<p><span>|</span>CAP</p>
+						</div>
+					</Link>
+				</Router>
 			</div>
 		</div>
 	{/if}

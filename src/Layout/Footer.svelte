@@ -1,12 +1,12 @@
 <script>
 	import { Router, Link, Route } from "svelte-routing";
 	import { loggedIn } from "../stores.js";
-
-	$loggedIn;
-
-	let LogMessage;
-	$: if ($loggedIn) LogMessage = "Your Account";
-	else LogMessage = "Log In";
+	let LogMessage = "Log In";
+	$: {
+		if (!$loggedIn) LogMessage = "Log In";
+		else LogMessage = "Your Account";
+	}
+	$: LogMessage = LogMessage;
 
 	let items;
 	$: items = [

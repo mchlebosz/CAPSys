@@ -1,15 +1,21 @@
 <script>
-	let loggedIn = false;
+	import { loggedIn } from "../stores.js";
 
 	import LoginForm from "../Components/LoginForm.svelte";
 </script>
 
-{#if !loggedIn}
-	<LoginForm />
-{/if}
+<div class="main">
+	{#if !$loggedIn}
+		<LoginForm />
+	{:else}
+		<div class="dashboard">Logged In</div>
+	{/if}
+</div>
 
 <style type="scss">
 	@import "../sass/main";
 	@import "../sass/components/dashboard";
-	@import "../sass/form";
+	.main {
+		height: 100vh;
+	}
 </style>
