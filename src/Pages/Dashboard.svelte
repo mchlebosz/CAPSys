@@ -1,5 +1,5 @@
 <script>
-	import { loggedIn } from "../stores.js";
+	import { loggedIn, password } from "../stores.js";
 
 	import LoginForm from "../Components/LoginForm.svelte";
 </script>
@@ -8,7 +8,16 @@
 	{#if !$loggedIn}
 		<LoginForm />
 	{:else}
-		<div class="dashboard">Logged In</div>
+		<div class="dashboard">
+			Logged In
+			<button
+				class="logOut"
+				on:click={() => {
+					loggedIn.set(false);
+					password.set("");
+				}}>Log Out</button
+			>
+		</div>
 	{/if}
 </div>
 

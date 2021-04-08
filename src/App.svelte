@@ -13,18 +13,13 @@
 	export let url = "";
 
 	$: {
-		console.log("Global: " + $loggedIn + " Session: " + sessionStorage.getItem("loggedIn"));
+		console.log(
+			"Global: " + $loggedIn + typeof $loggedIn + " Session: " + sessionStorage.getItem("loggedIn")
+		);
 	}
 </script>
 
 <Header />
-<button
-	on:click={() => {
-		if ($loggedIn) loggedIn.set(false);
-		else loggedIn.set(true);
-	}}>{$loggedIn}</button
->
-
 <Router {url}>
 	<div class="main">
 		<Route path="dashboard" component={Dashboard} />
@@ -37,5 +32,10 @@
 
 <Footer />
 
-<style>
+<style type="text/scss">
+	@import "./sass/main";
+
+	.main {
+		background-color: $c-background;
+	}
 </style>

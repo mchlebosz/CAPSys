@@ -7,9 +7,11 @@ const usernameState = localStorage.getItem("username");
 const passwordState = sessionStorage.getItem("password");
 
 // Set the stored value or a sane default.
-export const loggedIn = writable(loginState || false);
+export const loggedIn = writable(loginState || Boolean(false));
 export const username = writable(usernameState || "");
 export const password = writable(passwordState || "");
+
+if (loginState == "false") loggedIn.set(Boolean(false));
 
 // Anytime the store changes, update the session storage value.
 loggedIn.subscribe((value) => sessionStorage.setItem("loggedIn", value));

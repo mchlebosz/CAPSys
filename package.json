@@ -34,6 +34,7 @@
     "svelte-persistent-store": "^0.1.6",
     "svelte-preprocess": "^4.7.0",
     "svelte-routing": "^1.5.0",
+    "svelte-simple-modal": "^0.10.0",
     "svelte-watch-resize": "^1.0.3"
   }
 }
