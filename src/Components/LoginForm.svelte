@@ -101,7 +101,7 @@
 				})
 				.then(function (res) {
 					response = res;
-					alert(response.status + " | " + response.data.message);
+					console.log(response.status + " | " + response.data.message);
 					loggedIn.set(true);
 
 					username.set(usernameLocal);

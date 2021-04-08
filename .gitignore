@@ -106,3 +106,8 @@ typings/
 .next
 
 ./public/build
+
+public/build
+
+build.js
+build.css
