@@ -1,0 +1,27 @@
+.dashboard {
+	display: flex;
+	flex-flow: column nowrap;
+	height: 100%;
+
+	aside {
+		box-shadow: 5px 5px 15px -5px black;
+		margin: 20px;
+
+		padding: 10px;
+		background-color: $c-accent;
+		border-radius: 10px;
+	}
+	article {
+		padding: 10px;
+	}
+}
+
+@media (min-width: $sm) {
+	.dashboard {
+		aside {
+			height: calc(100% - 60px);
+		}
+
+		flex-flow: row nowrap;
+	}
+}

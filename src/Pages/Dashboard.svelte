@@ -2,6 +2,8 @@
 	import { loggedIn, password } from "../stores.js";
 
 	import LoginForm from "../Components/LoginForm.svelte";
+
+	import axios from "axios";
 </script>
 
 <div class="main">
@@ -9,14 +11,23 @@
 		<LoginForm />
 	{:else}
 		<div class="dashboard">
-			Logged In
-			<button
-				class="logOut"
-				on:click={() => {
-					loggedIn.set(false);
-					password.set("");
-				}}>Log Out</button
-			>
+			<aside>
+				<nav>
+					<ul class="menu">
+						<li>My Account</li>
+						<li>
+							<button
+								class="logOut"
+								on:click={() => {
+									loggedIn.set(false);
+									password.set("");
+								}}>Log Out</button
+							>
+						</li>
+					</ul>
+				</nav>
+			</aside>
+			<article>Hello, you are Logged In</article>
 		</div>
 	{/if}
 </div>

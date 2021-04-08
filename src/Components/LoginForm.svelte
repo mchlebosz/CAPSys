@@ -42,6 +42,7 @@
 					console.log(response.status + " | " + response.data.message);
 					loggedIn.set(true);
 					username.set(usernameLocal);
+
 					loading = true;
 				})
 				.catch(function (error) {
@@ -63,34 +64,68 @@
 		}
 	}
 
-	const userRegister = () => {
-		let username = document.getElementById("username").value;
-		let password = document.getElementById("password").value;
-		let rpassword = document.getElementById("rpassword").value;
-		let mail = document.getElementById("email").value;
+	async function userRegister() {
+		errors = {};
+		loading = true;
+		try {
+			let username = document.getElementById("username").value;
+			let password = document.getElementById("password").value;
+			let rpassword = document.getElementById("rpassword").value;
+			let mail = document.getElementById("email").value;
+			let role = document.getElementById("slct");
+			role = role.value;
+			switch (role) {
+				case "student":
+					role = 1;
+					break;
+				case "school":
+					role = 2;
+					break;
+				default:
+					role = 0;
+					break;
+			}
+			if (username == "") throw new Error("Enter Username");
+			if (mail == "") throw new Error("Enter E-mail");
+			if (password != rpassword) throw new Error("Passwords doesn't match");
+			if (role == 0) throw new Error("Select Account type");
 
-		let response;
-
-		if (password == rpassword) {
-			console.log("password ok");
+			let response;
 
 			axios
 				.post("http://localhost:8080/register.php", {
 					username: username,
 					password: password,
 					mail: mail,
+					role: role,
 				})
 				.then(function (res) {
 					response = res;
 					alert(response.status + " | " + response.data.message);
+					loggedIn.set(true);
+
+					username.set(usernameLocal);
 				})
 				.catch(function (error) {
-					console.log(error);
+					if (error.response) {
+						// client received an error response (5xx, 4xx)
+						errors.Register = "Wrong Data";
+					} else if (error.request) {
+						// client never received a response, or request never left
+						errors.Register = "Connection Error";
+					} else {
+						// anything else
+						errors.Register = "Whoops?";
+					}
+				})
+				.then(() => {
+					loading = false;
 				});
-		} else {
-			console.log("password wrong");
+		} catch (e) {
+			loading = false;
+			errors.Error = e.message;
 		}
-	};
+	}
 </script>
 
 <div class="loginPage">
@@ -241,7 +276,9 @@
 				<div class="controls">
 					<div id="button">
 						<div class="wrapper">
-							<button class="button" on:click={userRegister}>Register</button>
+							<button class="button" on:click={userRegister}
+								>Register {#if loading} <Icon data={faSyncAlt} scale={1} spin /> {/if}</button
+							>
 						</div>
 						<!-- Filter: https://css-tricks.com/gooey-effect/ -->
 						<svg

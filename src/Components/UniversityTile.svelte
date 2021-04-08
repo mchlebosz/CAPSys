@@ -4,8 +4,6 @@
 	export let description;
 	export let photourl;
 
-	import { onMount } from "svelte";
-
 	import Modal from "svelte-simple-modal";
 	import PopUpContent from "./PopUpContent.svelte";
 	import PopUpLogin from "./PopUpLogin.svelte";
@@ -32,7 +30,7 @@
 		</Modal>
 	</div>
 	<div class="details">
-		<Modal>
+		<Modal styleWindow={{ backgroundColor: bgColor, borderRadius: "20px" }}>
 			<PopUpContent {id} />
 		</Modal>
 	</div>
@@ -40,7 +38,6 @@
 
 <style type="text/scss">
 	@import "../sass/main";
-	@import "../sass/components/button";
 
 	.color {
 		background-color: $c-background;
@@ -85,9 +82,6 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			> div {
-				width: 76%;
-			}
 		}
 		.details {
 			grid-column: 2 / span 1;
@@ -95,13 +89,6 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			> div {
-				width: 76%;
-			}
-		}
-		.button {
-			width: 100%;
-			font-size: 1.1rem;
 		}
 	}
 	@media (min-width: $sm) {
