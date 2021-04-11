@@ -34,7 +34,7 @@
 				<Link to="/">
 					<div class="menu__logo">
 						<img src={logoPath} alt="Logo" />
-						<p><span>|</span>CAP</p>
+						<p><span>|</span>CAPSys</p>
 					</div>
 				</Link>
 				<ul class="menu__container">
@@ -129,7 +129,7 @@
 				<Link to="/">
 					<div class="top_bar__logo">
 						<img src={logoPath} alt="Logo" />
-						<p><span>|</span>CAP</p>
+						<p><span>|</span>CAPSys</p>
 					</div>
 				</Link>
 			</div>

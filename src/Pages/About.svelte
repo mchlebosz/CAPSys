@@ -1,10 +1,5 @@
 <script>
-	import Carousel from "svelte-carousel";
-	import "svelte-carousel/dist/index.css";
-	import * as jQuery from "jquery";
-	// ...
-	//jQuery("#carousel").slick();
-	$: items = [
+	$: slides = [
 		{
 			heading: "Lorem ipsum dolor sit amet.",
 			photo: "https://picsum.photos/seed/pccc/300/200",
@@ -26,7 +21,41 @@
 			text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, unde?",
 		},
 	];
+
+	import { hslide } from "../Layout/Swipe.js";
+
+	let cur = 0;
+
+	function changeSlide(slide) {
+		cur = slide;
+	}
+
+	const clamp = (number, min, max) => Math.min(Math.max(number, min), max);
+	const transition_args = {
+		duration: 200,
+	};
+
+	function prev(e) {
+		cur = clamp(--cur, 0, slides.length - 1);
+	}
+
+	function next(e) {
+		cur = clamp(++cur, 0, slides.length - 1);
+	}
+
+	const ARROW_LEFT = 37;
+	const ARROW_RIGHT = 39;
+	function handleShortcut(e) {
+		if (e.keyCode === ARROW_LEFT) {
+			prev();
+		}
+		if (e.keyCode === ARROW_RIGHT) {
+			next();
+		}
+	}
 </script>
+
+<svelte:window on:keyup={handleShortcut} />
 
 <div class="content">
 	<h1>Who we are?</h1>
@@ -37,19 +66,33 @@
 		Tempora praesentium aperiam quam nesciunt tempore commodi, porro ipsam mollitia nihil
 		reprehenderit! Consequuntur, ratione!
 	</p>
-	<!-- <Carousel autoplay={true} autoplayDuration={2000}> -->
-	<div id="carousel">
-		{#each items as item}
-			<div class="img">
-				<img src={item.photo} alt="About us" />
-				<div class="text">
-					<h2>{item.heading}}</h2>
-					<p>{item.text}</p>
+	<div class="extra-outer-wrapper">
+		<div class="outer-wrapper">
+			<div class="inner-wrapper">
+				{#each slides as item, id}
+					{#if id === cur}
+						<div class="img slide" in:hslide={transition_args} out:hslide={transition_args}>
+							<img src={item.photo} alt="About us" />
+							<div class="text">
+								<h2>{item.heading}</h2>
+								<p>{item.text}</p>
+							</div>
+						</div>
+					{/if}
+				{/each}
+				<div class="controls">
+					<button on:click={() => prev()}> &lt; </button>
+					<button on:click={() => next()}> &gt; </button>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="dots">
+		{#each slides as slide, i}
+			<button on:click={() => changeSlide(i)} class="dot" class:selected={cur == i}>{i + 1}</button>
 		{/each}
 	</div>
-	<!-- </Carousel> -->
+
 	<h2 class="ask">Ask us about anything 😁</h2>
 	<form
 		action="mailto:support@capsys.com"
@@ -130,4 +173,6 @@
 	@import "../sass/components/input";
 	@import "../sass/components/button";
 	@import "../sass/components/textarea";
+
+	// ...
 </style>

@@ -2,3 +2,59 @@
 	color: #132a47;
 	font-family: $font-std;
 }
+:global(body.contrast *) {
+	font-weight: 500;
+	background-color: white;
+	color: black;
+	button {
+		background-color: red;
+		color: white;
+		&:hover {
+			color: black;
+		}
+	}
+	a {
+		background-color: red;
+		color: white;
+		&:hover {
+			color: black;
+		}
+	}
+	input,
+	select,
+	textarea {
+		color: black;
+		background-color: white;
+		option {
+			color: black;
+		}
+	}
+	$c-shade-1: gray;
+	$c-shade-2: gray;
+	$c-accent: red;
+}
+
+:global(body.font *) {
+	font-weight: 500;
+	font-size: 1.06em;
+	h1 {
+		font-size: 1.3em;
+	}
+	h2 {
+		font-size: 1.2em;
+	}
+	h3 {
+		font-size: 1.1em;
+	}
+	button {
+		font-size: 1.1em;
+	}
+	a {
+		font-size: 1.4em;
+	}
+	input,
+	select,
+	textarea {
+		font-size: 1.1em;
+	}
+}
