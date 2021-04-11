@@ -16,14 +16,16 @@ $white: white;
 	font-size: 1rem;
 	color: $white;
 	padding: 7px 0;
-	background: transparent;
+	background: $c-shade-2;
 	transition: border-color 0.2s;
 
 	&::placeholder {
-		color: transparent;
+		color: $c-shade-2;
 	}
 
 	&:placeholder-shown ~ .form__label {
+		background: $c-shade-2;
+
 		font-size: 1rem;
 		cursor: text;
 		top: 20px;

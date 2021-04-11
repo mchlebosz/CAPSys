@@ -3,7 +3,7 @@
 	import { faUser } from "@fortawesome/free-regular-svg-icons";
 	import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
-	import { Router, Link, Route } from "svelte-routing";
+	import { Link } from "svelte-routing";
 
 	import { loggedIn } from "../stores.js";
 
@@ -15,15 +15,14 @@
 
 	import { fade } from "svelte/transition";
 
-	export let url = "";
+	//export let url = "";
 
 	let mainWidth = window.innerWidth;
 
 	function handleMainResize() {
 		mainWidth = window.innerWidth;
 	}
-
-	let logoPath = "./Assets/CapLogoMan.svg";
+	let logoPath = "/Assets/CapLogoMan.svg";
 </script>
 
 <svelte:window on:resize={handleMainResize} />
@@ -32,45 +31,39 @@
 	{#if mainWidth >= 768}
 		<div class="desktop">
 			<nav class="menu" id="menu">
-				<Router {url}
-					><Link to="/">
-						<div class="menu__logo">
-							<img src={logoPath} alt="Logo" />
-							<p><span>|</span>CAP</p>
-						</div>
-					</Link>
-				</Router>
-				<Router {url}>
-					<ul class="menu__container">
-						{#each items as item}
-							<li class="menu__item"><Link to={item.url}><span> {item.name}</span></Link></li>
-						{/each}
-					</ul>
-				</Router>
+				<Link to="/">
+					<div class="menu__logo">
+						<img src={logoPath} alt="Logo" />
+						<p><span>|</span>CAP</p>
+					</div>
+				</Link>
+				<ul class="menu__container">
+					{#each items as item}
+						<li class="menu__item"><Link to={item.url}><span> {item.name}</span></Link></li>
+					{/each}
+				</ul>
 				<div class="menu__login">
-					<Router {url}>
-						<Link to="dashboard"
-							><button
-								class="login__button noSelect"
-								type="button"
-								id="loginButton"
-								on:click={(e) => {
-									//document.querySelector("#hamburgerButton").classList.remove("is-active");
-									//document.querySelector("nav.hamburger-menu").classList.add("closed");
-								}}
-							>
-								{#if $loggedIn}
-									<span in:fade>
-										<Icon data={faUser} scale={2} />
-									</span>
-								{:else}
-									<span in:fade>
-										<Icon data={faSignInAlt} scale={2} />
-									</span>
-								{/if}
-							</button></Link
+					<Link to="dashboard"
+						><button
+							class="login__button noSelect"
+							type="button"
+							id="loginButton"
+							on:click={(e) => {
+								//document.querySelector("#hamburgerButton").classList.remove("is-active");
+								//document.querySelector("nav.hamburger-menu").classList.add("closed");
+							}}
 						>
-					</Router>
+							{#if $loggedIn}
+								<span in:fade>
+									<Icon data={faUser} scale={2} />
+								</span>
+							{:else}
+								<span in:fade>
+									<Icon data={faSignInAlt} scale={2} />
+								</span>
+							{/if}
+						</button></Link
+					>
 				</div>
 			</nav>
 		</div>
@@ -93,58 +86,52 @@
 						</span>
 					</button>
 					<div class="content">
-						<Router {url}>
-							<ul class="hamburger-menu__container">
-								{#each items as item}
-									<li
-										class="hamburger-menu__item"
-										on:click={(e) => {
-											document.querySelector("#hamburgerButton").classList.remove("is-active");
-											document.querySelector("nav.hamburger-menu").classList.add("closed");
-										}}
-									>
-										<Link to={item.url}><span> {item.name}</span></Link>
-									</li>
-								{/each}
-							</ul>
-						</Router>
+						<ul class="hamburger-menu__container">
+							{#each items as item}
+								<li
+									class="hamburger-menu__item"
+									on:click={(e) => {
+										document.querySelector("#hamburgerButton").classList.remove("is-active");
+										document.querySelector("nav.hamburger-menu").classList.add("closed");
+									}}
+								>
+									<Link to={item.url}><span> {item.name}</span></Link>
+								</li>
+							{/each}
+						</ul>
 					</div>
 				</div>
 			</nav>
 			<nav class="login">
-				<Router {url}>
-					<Link to="dashboard"
-						><button
-							class="login__button noSelect"
-							type="button"
-							id="loginButton"
-							on:click={(e) => {
-								document.querySelector("#hamburgerButton").classList.remove("is-active");
-								document.querySelector("nav.hamburger-menu").classList.add("closed");
-								console.log("hii");
-							}}
-							>{#if $loggedIn}
-								<span in:fade>
-									<Icon data={faUser} scale={2} />
-								</span>
-							{:else}
-								<span in:fade>
-									<Icon data={faSignInAlt} scale={2} />
-								</span>
-							{/if}</button
-						></Link
-					>
-				</Router>
+				<Link to="dashboard">
+					<button
+						class="login__button noSelect"
+						type="button"
+						id="loginButton"
+						on:click={(e) => {
+							document.querySelector("#hamburgerButton").classList.remove("is-active");
+							document.querySelector("nav.hamburger-menu").classList.add("closed");
+							console.log("hii");
+						}}
+						>{#if $loggedIn}
+							<span in:fade>
+								<Icon data={faUser} scale={2} />
+							</span>
+						{:else}
+							<span in:fade>
+								<Icon data={faSignInAlt} scale={2} />
+							</span>
+						{/if}</button
+					></Link
+				>
 			</nav>
 			<div class="top_bar">
-				<Router {url}>
-					<Link to="/">
-						<div class="top_bar__logo">
-							<img src={logoPath} alt="Logo" />
-							<p><span>|</span>CAP</p>
-						</div>
-					</Link>
-				</Router>
+				<Link to="/">
+					<div class="top_bar__logo">
+						<img src={logoPath} alt="Logo" />
+						<p><span>|</span>CAP</p>
+					</div>
+				</Link>
 			</div>
 		</div>
 	{/if}
@@ -153,5 +140,4 @@
 <style type="text/scss">
 	@import "../sass/main";
 	@import "../sass/components/header";
-	//@import "../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
 </style>

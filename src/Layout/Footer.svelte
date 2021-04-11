@@ -1,5 +1,5 @@
 <script>
-	import { Router, Link, Route } from "svelte-routing";
+	import { Link } from "svelte-routing";
 	import { loggedIn } from "../stores.js";
 	let LogMessage = "Log In";
 	$: {
@@ -16,20 +16,36 @@
 		{ name: LogMessage, url: "dashboard" },
 	];
 
-	export let url = "";
+	let isFont = false;
+	let isContrast = false;
 </script>
 
 <footer>
 	<div class="menu">
-		<Router {url}>
-			<ul class="menu__container flex">
-				{#each items as item}
-					<li class="menu__item"><Link to={item.url}><span> {item.name}</span></Link></li>
-				{/each}
-			</ul>
-		</Router>
+		<ul class="menu__container flex">
+			{#each items as item}
+				<li class="menu__item"><Link to={item.url}><span> {item.name}</span></Link></li>
+			{/each}
+		</ul>
 	</div>
-	<div class="flex">Created by Mateusz Chlebosz 4C</div>
+	<div class="flex">Created by Mateusz Chlebosz 4C, Zespół Szkół Komunikacji</div>
+	<div class="a11y">
+		<button
+			on:click={() => {
+				document.body.classList.toggle("contrast");
+				isFont = isFont ? false : true;
+			}}
+		>
+			{#if isFont} Decrease Contrast{:else}Increase Contrast{/if}</button
+		>
+		<button
+			on:click={() => {
+				document.body.classList.toggle("font");
+				isContrast = isContrast ? false : true;
+			}}
+			>{#if isContrast} Decrease Font Size{:else}Increase Font Size {/if}</button
+		>
+	</div>
 </footer>
 
 <style type="scss">

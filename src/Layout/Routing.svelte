@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import { Router, Link, Route } from "svelte-routing";
 	import Home from "../Pages/Home.svelte";
 	import About from "../Pages/About.svelte";
@@ -18,4 +18,4 @@
 		<Route path="about" component={About} />
 		<Route path="/"><Home /></Route>
 	</div>
-</Router>
+</Router> -->

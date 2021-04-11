@@ -2,7 +2,8 @@
 	export let id;
 	export let name;
 	export let description;
-	export let photourl;
+	export let photourl =
+		"https://image.shutterstock.com/image-vector/university-logo-template-600w-1331382584.jpg";
 
 	import Modal from "svelte-simple-modal";
 	import PopUpContent from "./PopUpContent.svelte";

@@ -5,7 +5,7 @@
 	import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 
 	import { fade } from "svelte/transition";
-	import { loggedIn, username, password } from "../stores.js";
+	import { loggedIn, username, password, apiAddress } from "../stores.js";
 
 	let register = false;
 	$: register = register;
@@ -33,7 +33,7 @@
 			let response;
 
 			axios
-				.post("http://localhost:8080/login.php", {
+				.post($apiAddress + "/login.php", {
 					username: usernameLocal,
 					password: passwordLocal,
 				})
@@ -93,7 +93,7 @@
 			let response;
 
 			axios
-				.post("http://localhost:8080/register.php", {
+				.post($apiAddress + "/register.php", {
 					username: username,
 					password: password,
 					mail: mail,
@@ -138,6 +138,7 @@
 				on:submit={(e) => {
 					e.preventDefault();
 				}}
+				method="post"
 			>
 				<div class="form__group field" id="in1">
 					<input
@@ -147,6 +148,7 @@
 						name="username"
 						id="username"
 						bind:value={$username}
+						autocomplete="username"
 						required
 					/>
 					<label for="username" class="form__label">Username</label>
@@ -158,6 +160,7 @@
 						placeholder="Password"
 						name="password"
 						id="password"
+						autocomplete="current-password"
 						required
 					/>
 					<label for="password" class="form__label">Password</label>
@@ -221,6 +224,7 @@
 				on:submit={(e) => {
 					e.preventDefault();
 				}}
+				method="post"
 			>
 				<div class="form__group field" id="in1">
 					<input
@@ -229,6 +233,7 @@
 						placeholder="Username"
 						name="username"
 						id="username"
+						autocomplete="username"
 						required
 					/>
 					<label for="username" class="form__label">Username</label>
@@ -251,6 +256,7 @@
 						placeholder="Password"
 						name="password"
 						id="password"
+						autocomplete="new-password"
 						required
 					/>
 					<label for="password" class="form__label">Password</label>
@@ -262,6 +268,7 @@
 						placeholder="Repeat Password"
 						name="rpassword"
 						id="rpassword"
+						autocomplete="new-password"
 						required
 					/>
 					<label for="rpassword" class="form__label">Repeat Password</label>

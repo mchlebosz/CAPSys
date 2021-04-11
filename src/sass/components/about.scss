@@ -1,0 +1,55 @@
+.content {
+	background-color: $c-background;
+	h1 {
+		margin: 0;
+		padding: 10px;
+		text-align: center;
+	}
+	.img {
+		display: flex;
+		flex-flow: row wrap;
+		padding: 10px;
+		width: 100%;
+		img {
+			width: 100%;
+			height: auto;
+		}
+		.text {
+			max-width: 400px;
+			margin-left: 5px;
+			padding: 5px;
+		}
+	}
+	h2 {
+		margin-top: 30px;
+		text-align: center;
+	}
+	form {
+		background-color: $c-shade-2;
+		border-radius: 10px;
+		padding: 8px 30px 0px 30px;
+		margin: 30px 20px 30px 20px;
+	}
+}
+
+@media (min-width: $sm) {
+	.content {
+		.img {
+			flex-flow: row nowrap;
+			img {
+				width: 100%;
+				max-width: 400px;
+				height: auto;
+			}
+
+			.text {
+				max-width: 100%;
+			}
+		}
+		form {
+			margin: auto;
+			max-width: 500px;
+			margin: 30px auto 30px auto;
+		}
+	}
+}

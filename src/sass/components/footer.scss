@@ -33,4 +33,21 @@ footer {
 			}
 		}
 	}
+
+	.a11y {
+		margin: auto;
+		margin-top: 5px;
+		margin-bottom: 10px;
+		button {
+			background-color: $c-background;
+			color: $c-content;
+			font-size: 1.05em;
+			font-weight: 500;
+			border-radius: 10px;
+			padding: 5px;
+			&:hover {
+				color: $c-accent;
+			}
+		}
+	}
 }

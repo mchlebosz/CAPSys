@@ -1,19 +1,33 @@
 <script>
 	export let text = "button";
-	export let id;
+	export let id = "";
 	import LoginForm from "./LoginForm.svelte";
 	import { getContext } from "svelte";
 
 	const { open } = getContext("simple-modal");
-	import { loggedIn } from "../stores.js";
+	import { loggedIn, apiAddress } from "../stores.js";
 	import { navigate } from "svelte-routing";
 
-	const showDetails = () => {
-		if (!$loggedIn) open(LoginForm);
-		else navigate("schools/" + id, { replace: true });
-	};
+	let windowOpen = false;
 
-	$: if ($loggedIn) navigate("schools/" + id, { replace: true });
+	$: if ($loggedIn && windowOpen) navigate("schools/" + id, { replace: true });
+
+	const showDetails = () => {
+		if (!$loggedIn) {
+			windowOpen = true;
+
+			open(
+				LoginForm,
+				{},
+				{},
+				{
+					onClose: () => {
+						windowOpen = false;
+					},
+				}
+			);
+		} else navigate("schools/" + id, { replace: true });
+	};
 </script>
 
 <div id="button">

@@ -1,17 +1,72 @@
 <script>
-	export let details;
 	export let id;
+	console.log(id);
+
+	import axios from "axios";
 	import { fade } from "svelte/transition";
 
-	let name = "Nazwaaa";
-	let photo = "https://www.emerce.nl/content/uploads/2019/10/ruglogo-430x400.jpg";
-	let country = "country";
-	let address = "address";
-	let city = "city";
-	let description = "description";
+	import { apiAddress } from "../stores.js";
+
+	let errors = {};
+	var data = [];
+	console.log(id);
+
+	async function loadSchool() {
+		errors = {};
+		await axios
+			.get($apiAddress + "schools.php?id=" + id)
+			.then((resp) => {
+				data = resp.data;
+				console.log(data);
+
+				name = data.name;
+				photo = data.photo;
+				country = data.address.country;
+				address = data.address.street;
+				city = data.address.city;
+				description = data.description;
+				type = data.type;
+			})
+			.catch(function (error) {
+				console.log(error);
+				if (error.response) {
+					// client received an error response (5xx, 4xx)
+					errors.LogIn = "No University Found";
+				} else if (error.request) {
+					// client never received a response, or request never left
+					errors.LogIn = "Connection Error";
+				} else {
+					// anything else
+					errors.LogIn = "Whoops?";
+				}
+			});
+	}
+
+	let name = "";
+	let photo = "";
+	let country = "";
+	let address = "";
+	let city = "";
+	let description = "";
+	let type = "";
+
+	$: {
+		console.log(data);
+	}
+
+	loadSchool();
 </script>
 
 <div transition:fade class="container">
+	{#if Object.keys(errors).length > 0}
+		<div class="errors__box">
+			<ul class="errors__list">
+				{#each Object.keys(errors) as field}
+					<li class="errors__item">{errors[field]}</li>
+				{/each}
+			</ul>
+		</div>
+	{/if}
 	<div class="name"><h1>{name}</h1></div>
 	<div class="photo">
 		<img src={photo} alt="rug" />
@@ -20,11 +75,9 @@
 		<div class="country"><h4>Country: <span>{country}</span></h4></div>
 		<div class="address"><h4>Address: <span>{address}</span></h4></div>
 		<div class="city"><h4>City: <span>{city}</span></h4></div>
+		<div class="type"><h4>Type: <span>{type}</span></h4></div>
 	</div>
 	<div class="description">{description}</div>
-	<div class="programmes">
-		<table>Tabelka</table>
-	</div>
 </div>
 
 <style type="scss">
@@ -33,10 +86,10 @@
 	.container {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 50px 200px auto auto;
+		grid-template-rows: 50px 250px auto;
 		height: 500px;
-		gap: 10px;
-		margin: 10px;
+		gap: 20px;
+		column-gap: 5px;
 		width: 100%;
 		.name {
 			grid-column: 1 / span 2;
@@ -53,14 +106,14 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			width: 200px;
-			height: 200px;
+			width: 250px;
+			height: 250px;
 			align-self: center;
 			justify-self: center;
 
 			img {
 				height: 100%;
-				max-height: 200px;
+				max-height: 250px;
 				width: auto;
 				border-radius: 10px;
 				background-color: $c-background;
@@ -78,12 +131,12 @@
 			}
 		}
 		.description {
-			grid-column: 1 / span 1;
-			grid-row: 3 / span 2;
-		}
-		.programmes {
 			grid-column: 1 / span 2;
-			grid-row: 4 / span 2;
+			grid-row: 3 / span 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 10px;
 		}
 	}
 </style>

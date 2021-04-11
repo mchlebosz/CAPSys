@@ -1,12 +1,13 @@
 <script>
 	export let id;
+
 	import UniversityDetails from "./UniversityDetails.svelte";
 	import { getContext } from "svelte";
 
 	const { open } = getContext("simple-modal");
 
 	const showDetails = () => {
-		open(UniversityDetails, { id: { id }, details: "It's a modal!" });
+		open(UniversityDetails, { id });
 	};
 </script>
 
