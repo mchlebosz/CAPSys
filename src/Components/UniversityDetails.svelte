@@ -9,15 +9,13 @@
 
 	let errors = {};
 	var data = [];
-	console.log(id);
 
 	async function loadSchool() {
 		errors = {};
 		await axios
-			.get($apiAddress + "schools.php?id=" + id)
+			.get($apiAddress + "schools.php?school_id=" + id)
 			.then((resp) => {
 				data = resp.data;
-				console.log(data);
 
 				name = data.name;
 				photo = data.photo;
@@ -49,10 +47,6 @@
 	let city = "";
 	let description = "";
 	let type = "";
-
-	$: {
-		console.log(data);
-	}
 
 	loadSchool();
 </script>

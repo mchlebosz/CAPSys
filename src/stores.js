@@ -5,11 +5,15 @@ import { writable } from "svelte/store";
 const loginState = sessionStorage.getItem("loggedIn");
 const usernameState = localStorage.getItem("username");
 const passwordState = sessionStorage.getItem("password");
+const roleValue = sessionStorage.getItem("role");
+const IdValue = sessionStorage.getItem("userId");
 
 // Set the stored value or a sane default.
 export const loggedIn = writable(loginState || Boolean(false));
 export const username = writable(usernameState || "");
 export const password = writable(passwordState || "");
+export const role = writable(roleValue || "null");
+export const userId = writable(IdValue || "");
 
 if (loginState == "false") loggedIn.set(Boolean(false));
 
@@ -24,3 +28,5 @@ export const apiAddress = writable("http://192.168.1.19:8088/");
 loggedIn.subscribe((value) => sessionStorage.setItem("loggedIn", value));
 username.subscribe((value) => localStorage.setItem("username", value));
 password.subscribe((value) => sessionStorage.setItem("password", value));
+role.subscribe((value) => sessionStorage.setItem("role", value));
+userId.subscribe((value) => sessionStorage.setItem("userId", value));

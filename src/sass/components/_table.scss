@@ -1,0 +1,156 @@
+@import "compass-mixins/lib/compass/css3";
+
+p {
+	text-align: center;
+	margin: 20px 0 60px;
+}
+main {
+	background-color: $c-background;
+	border: 1px solid $c-shade-2;
+	border-radius: 20px;
+}
+
+table {
+	display: block;
+}
+tr,
+td,
+tbody,
+tfoot {
+	display: block;
+}
+thead {
+	display: none;
+}
+tr {
+	padding-bottom: 10px;
+	&:last-of-type {
+		.select {
+			border-bottom: 0px solid $c-shade-2;
+		}
+	}
+}
+
+td {
+	padding: 10px 10px 0;
+	text-align: center;
+	&:before {
+		content: attr(data-title);
+		color: $c-shade-2;
+		text-transform: uppercase;
+		font-size: 1.2rem;
+		padding-bottom: 2px;
+		display: block;
+		text-align: center;
+		font-weight: bolder;
+	}
+}
+table {
+	width: 100%;
+}
+
+th {
+	text-align: left;
+	font-weight: 700;
+}
+thead {
+	th {
+		background-color: $c-shade-2;
+		color: $c-background;
+		border: 1px solid$c-shade-2, 6%;
+		border-radius: 15px;
+	}
+}
+tfoot {
+	th {
+		display: block;
+		padding: 10px;
+		text-align: center;
+		color: lighten($c-shade-2, 55%);
+	}
+}
+
+.button {
+	line-height: 1;
+	display: inline-block;
+	font-size: 1.2rem;
+	text-decoration: none;
+	border-radius: 5px;
+	color: #fff;
+	padding: 8px;
+	background-color: $c-accent;
+	&:hover {
+		background-color: darken($c-accent-2, 5%);
+	}
+}
+.select {
+	&:before {
+		display: none;
+	}
+	padding-bottom: 20px;
+	border-bottom: 1px solid $c-shade-2;
+}
+
+@media (min-width: $xs) {
+	td {
+		text-align: left;
+		&:before {
+			display: inline-block;
+			text-align: right;
+			width: 150px;
+			padding-right: 10px;
+		}
+	}
+	.select {
+		padding-left: 160px;
+	}
+}
+@media (min-width: $sm) {
+	main {
+		border: 0px solid transparent;
+	}
+	table {
+		display: table;
+	}
+	tr {
+		display: table-row;
+	}
+	td,
+	th {
+		display: table-cell;
+		border-radius: 15px;
+	}
+	tbody {
+		display: table-row-group;
+	}
+	thead {
+		display: table-header-group;
+	}
+	tfoot {
+		display: table-footer-group;
+	}
+	td {
+		border: 1px solid darken($c-shade-2, 2%);
+		&:before {
+			display: none;
+		}
+	}
+	td,
+	th {
+		padding: 10px;
+	}
+	tr:nth-child(2n + 2) {
+		td {
+			background-color: darken($c-shade-2, 4%);
+			color: $c-background;
+		}
+	}
+	tfoot th {
+		display: table-cell;
+	}
+	.select {
+		padding: 10px;
+		background-color: transparent !important;
+		border: 0px solid transparent;
+	}
+}

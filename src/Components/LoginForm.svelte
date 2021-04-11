@@ -5,7 +5,7 @@
 	import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 
 	import { fade } from "svelte/transition";
-	import { loggedIn, username, password, apiAddress } from "../stores.js";
+	import { loggedIn, username, password, apiAddress, role } from "../stores.js";
 
 	let register = false;
 	$: register = register;
@@ -172,7 +172,6 @@
 								Log In {#if loading} <Icon data={faSyncAlt} scale={1} spin /> {/if}</button
 							>
 						</div>
-						<!-- Filter: https://css-tricks.com/gooey-effect/ -->
 						<svg
 							style="visibility: hidden; position: absolute;"
 							width="0"

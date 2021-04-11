@@ -44,6 +44,12 @@
 	@import "./sass/main";
 
 	.main {
+		position: relative;
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: center;
+		align-items: center;
 		background-color: $c-background;
+		min-height: calc(100% - 344px);
 	}
 </style>

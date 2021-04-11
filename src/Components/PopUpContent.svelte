@@ -1,13 +1,12 @@
 <script>
 	export let id;
 
-	import UniversityDetails from "./UniversityDetails.svelte";
 	import { getContext } from "svelte";
 
-	const { open } = getContext("simple-modal");
+	import { navigate } from "svelte-routing";
 
 	const showDetails = () => {
-		open(UniversityDetails, { id });
+		navigate("schools/" + id, { replace: true });
 	};
 </script>
 
@@ -16,7 +15,6 @@
 		<button class="button" on:click={showDetails}> Details </button>
 	</div>
 
-	<!-- Filter: https://css-tricks.com/gooey-effect/ -->
 	<svg
 		style="visibility: hidden; position: absolute;"
 		width="0"

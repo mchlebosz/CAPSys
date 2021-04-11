@@ -31,9 +31,7 @@
 		</Modal>
 	</div>
 	<div class="details">
-		<Modal styleWindow={{ backgroundColor: bgColor, borderRadius: "20px" }}>
-			<PopUpContent {id} />
-		</Modal>
+		<PopUpContent {id} />
 	</div>
 </div>
 
