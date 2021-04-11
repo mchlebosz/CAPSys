@@ -53,6 +53,23 @@
 			next();
 		}
 	}
+
+	function sendMail() {
+		var name = document.getElementById("name").value;
+		var surname = document.getElementById("surname").value;
+		var email = document.getElementById("email").value;
+		var message = document.getElementById("message").value;
+		window.location.href =
+			"mailto:support@capsys.com?subject=The subject - " +
+			name +
+			" " +
+			surname +
+			" (" +
+			email +
+			")" +
+			"&body=" +
+			message;
+	}
 </script>
 
 <svelte:window on:keyup={handleShortcut} />
@@ -94,13 +111,7 @@
 	</div>
 
 	<h2 class="ask">Ask us about anything 😁</h2>
-	<form
-		action="mailto:support@capsys.com"
-		class="contact"
-		method="POST"
-		enctype="multipart/form-data"
-		name="EmailForm"
-	>
+	<form class="contact" name="EmailForm" on:submit={sendMail}>
 		<div class="form__group field">
 			<input type="text" class="form__field" placeholder="Name" name="name" id="name" required />
 			<label for="name" class="form__label">Name</label>
@@ -173,6 +184,11 @@
 	@import "../sass/components/input";
 	@import "../sass/components/button";
 	@import "../sass/components/textarea";
+
+	.content .button {
+		background-color: $c-background;
+		border-color: $c-background;
+	}
 
 	// ...
 </style>

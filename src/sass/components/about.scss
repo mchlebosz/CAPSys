@@ -30,17 +30,19 @@
 		padding: 8px 30px 0px 30px;
 		margin: 30px 20px 30px 20px;
 	}
-	button {
-		background: transparent;
-		color: #fff;
-		border-color: transparent;
-		width: 3.2rem;
-		height: 3.2rem;
-	}
+	.extra-outer-wrapper {
+		button {
+			background: transparent;
+			color: #fff;
+			border-color: transparent;
+			width: 3.2rem;
+			height: 3.2rem;
+		}
 
-	button:hover,
-	button:focus {
-		background: rgba(0, 0, 0, 0.5);
+		button:hover,
+		button:focus {
+			background: rgba(0, 0, 0, 0.5);
+		}
 	}
 
 	.dots {
