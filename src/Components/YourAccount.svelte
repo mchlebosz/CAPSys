@@ -89,7 +89,7 @@
 					placeholder="First Name"
 					required
 				/>
-				<label for="password" class="form__label">First Name</label>
+				<label for="name" class="form__label">First Name</label>
 			</div>
 			<div class="form__group field">
 				<input
@@ -101,7 +101,7 @@
 					placeholder="Surname"
 					required
 				/>
-				<label for="password" class="form__label">Surname</label>
+				<label for="surname" class="form__label">Surname</label>
 			</div>
 			<div class="form__group field">
 				<input

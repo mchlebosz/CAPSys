@@ -40,10 +40,8 @@
 				.then(function (res) {
 					response = res;
 					console.log(response.status + " | " + response.data.message);
-					loggedIn.set(true);
 					username.set(usernameLocal);
-
-					loading = true;
+					loggedIn.set(true);
 				})
 				.catch(function (error) {
 					console.log(error);
@@ -68,7 +66,7 @@
 		errors = {};
 		loading = true;
 		try {
-			let username = document.getElementById("username").value;
+			let usernameLocal = document.getElementById("username").value;
 			let password = document.getElementById("password").value;
 			let rpassword = document.getElementById("rpassword").value;
 			let mail = document.getElementById("email").value;
@@ -85,7 +83,7 @@
 					role = 0;
 					break;
 			}
-			if (username == "") throw new Error("Enter Username");
+			if (usernameLocal == "") throw new Error("Enter Username");
 			if (mail == "") throw new Error("Enter E-mail");
 			if (password != rpassword) throw new Error("Passwords doesn't match");
 			if (role == 0) throw new Error("Select Account type");
@@ -94,7 +92,7 @@
 
 			axios
 				.post($apiAddress + "/register.php", {
-					username: username,
+					username: usernameLocal,
 					password: password,
 					mail: mail,
 					role: role,
@@ -102,9 +100,8 @@
 				.then(function (res) {
 					response = res;
 					console.log(response.status + " | " + response.data.message);
-					loggedIn.set(true);
-
 					username.set(usernameLocal);
+					loggedIn.set(true);
 				})
 				.catch(function (error) {
 					if (error.response) {
@@ -126,6 +123,8 @@
 			errors.Error = e.message;
 		}
 	}
+
+	$: console.log($loggedIn);
 </script>
 
 <div class="loginPage">
