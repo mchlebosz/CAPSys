@@ -16,7 +16,7 @@ $white: white;
 	font-size: 1rem;
 	color: $white;
 	padding: 7px 0;
-	background: $c-shade-2;
+	background: transparent;
 	transition: border-color 0.2s;
 
 	&::placeholder {

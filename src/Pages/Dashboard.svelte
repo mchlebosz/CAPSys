@@ -84,6 +84,7 @@
 												loggedIn.set(false);
 												password.set("");
 												role.set("null");
+												userId.set("");
 											}}>Log Out</button
 										>
 									</div>

@@ -69,26 +69,28 @@ tfoot {
 		color: lighten($c-shade-2, 55%);
 	}
 }
-
-.button {
-	line-height: 1;
-	display: inline-block;
-	font-size: 1.2rem;
-	text-decoration: none;
-	border-radius: 5px;
-	color: #fff;
-	padding: 8px;
-	background-color: $c-accent;
-	&:hover {
-		background-color: darken($c-accent-2, 5%);
+table {
+	.button {
+		line-height: 1;
+		display: inline-block;
+		font-size: 1.2rem;
+		text-decoration: none;
+		border-radius: 5px;
+		color: #fff;
+		padding: 8px;
+		background-color: $c-accent;
+		&:hover {
+			background-color: darken($c-accent-2, 5%);
+		}
 	}
-}
-.select {
-	&:before {
-		display: none;
+	.select {
+		&:before {
+			display: none;
+		}
+		padding-bottom: 20px;
+		border-bottom: 1px solid $c-shade-2;
+		border: 0px solid transparent;
 	}
-	padding-bottom: 20px;
-	border-bottom: 1px solid $c-shade-2;
 }
 
 @media (min-width: $xs) {

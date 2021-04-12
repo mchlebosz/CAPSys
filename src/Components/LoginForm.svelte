@@ -286,7 +286,6 @@
 								>Register {#if loading} <Icon data={faSyncAlt} scale={1} spin /> {/if}</button
 							>
 						</div>
-						<!-- Filter: https://css-tricks.com/gooey-effect/ -->
 						<svg
 							style="visibility: hidden; position: absolute;"
 							width="0"

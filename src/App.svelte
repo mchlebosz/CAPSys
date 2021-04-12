@@ -31,7 +31,7 @@
 		<Route path="schools/:schoolId" let:params>
 			<SchoolPage {params} />
 		</Route>
-		<Route path="schools/:schoolId/programme/:programmeId" let:params>
+		<Route path="schools/:schoolId/courses/:courseId" let:params>
 			<ProgrammePage {params} />
 		</Route>
 		<!-- <Route path="pokelist" component={PokeList} /> -->
